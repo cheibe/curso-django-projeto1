@@ -1,6 +1,9 @@
 {% include "recipes/partials/head.html" %}
+<html lang="pt-BR">
+<head>
 
-
+<title> {% block title %}{% endblock title %} Recipes</title>
+</head>
 <body>
     {% include "recipes/partials/header.html" %}
     {% include "recipes/partials/search.html" %}
@@ -10,3 +13,4 @@
     </main>
     {% include "recipes/partials/footer.html" %}
 </body>
+</html>
