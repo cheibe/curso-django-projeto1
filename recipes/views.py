@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_list_or_404
+from django.shortcuts import render, get_list_or_404, get_object_or_404
 from django.http import HttpResponse, Http404
 from utils.recipes.factory import make_recipe
 from recipes.models import Recipe
@@ -10,8 +10,10 @@ def home(request):
     })
 
 def recipe(request, id):
+    recipe = get_object_or_404(Recipe, pk=id, is_published=True)
+
     return render(request, 'recipes/pages/recipe-view.html', context={
-        'recipe': make_recipe(),
+        'recipe': recipe,
         'is_detail_page': True,
     })
 
