@@ -2,11 +2,7 @@ from . test_recipe_base import RecipeTestBase
 from django.urls import reverse, resolve
 from recipes import views
 
-
 class RecipeViewsTest(RecipeTestBase):
-    
-    def tearDown(self) -> None:
-        return super().tearDown()
 
     def test_recipe_home_view_fuction_is_correct(self):
         view = resolve(reverse('recipes:home'))
@@ -21,11 +17,11 @@ class RecipeViewsTest(RecipeTestBase):
         self.assertTemplateUsed(response, 'recipes/pages/home.html')
 
     def test_recipe_home_template_shows_no_recipes_found_if_no_recipes(self):
-        Recipe.objects.get(pk=1).delete()
         response = self.client.get(reverse('recipes:home'))
         self.assertIn('<h1>NO RECIPES FOUND HERE 😢</h1>', response.content.decode('utf-8'))
 
     def test_recipe_home_template_load_recipe(self):
+        self.make_recipe()
         response = self.client.get(reverse('recipes:home'))
         content = response.content.decode('utf-8')
         response_context_recipes = response.context['recipes']
