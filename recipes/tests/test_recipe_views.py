@@ -77,7 +77,7 @@ class RecipeViewsTest(RecipeTestBase):
 
     def test_recipe_detail_template_dont_load_recipe_not_published(self):
         recipe = self.make_recipe(is_published=False)
-        response = self.client.get(reverse('recipes:recipe', kwargs={'id': recipe.category.id}))
+        response = self.client.get(reverse('recipes:recipe', kwargs={'id': recipe.id}))
         self.assertEqual(response.status_code, 404)
 
     
