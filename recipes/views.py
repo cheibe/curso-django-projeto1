@@ -30,3 +30,9 @@ def category(request, category_id):
         'recipes': recipes,
         'title': f'{recipes[0].category.name}  - CATEGORY |'
     })
+
+def search(request):
+    search_term = request.GET.get('search')
+    if not search_term:
+        raise Http404()
+    return render(request, 'recipes/pages/search.html')
