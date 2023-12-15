@@ -6,6 +6,7 @@ from django.db.models import Q
 from django.core.paginator import Paginator
 from utils.pagination import make_pagination_range, make_pagination
 import os
+from django.contrib import messages
 
 PER_PAGE = int(os.environ.get('PER_PAGE', 9))
 
