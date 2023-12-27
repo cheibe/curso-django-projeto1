@@ -18,12 +18,12 @@ class RegisterForm(forms.ModelForm):
         add_placeholder(self.fields['email'], 'Your e-mail')
         add_placeholder(self.fields['first_name'], 'Your name')
         add_placeholder(self.fields['last_name'], 'Your surname')
+        add_placeholder(self.fields['password'],'Type your password here')
+        add_placeholder(self.fields['password2'],'Repeat your password')
 
     password2 = forms.CharField(
         required=True,
-        widget=forms.PasswordInput(attrs={
-            'placeholder': 'Repeat your password'
-        })
+        label='Password2'
     )
     class Meta:
         model = User
@@ -35,10 +35,12 @@ class RegisterForm(forms.ModelForm):
             'password',
         ]
 
-        widgets = {
-            'password': forms.PasswordInput(attrs={
-                'placeholder': 'Type your password here'
-            })
+        labels = {
+            'username': 'Username',
+            'first_name': 'First name',
+            'last_name': 'Last name',
+            'email': 'E-mail',
+            'password': 'Password',
         }
 
     def clean(self):
