@@ -36,6 +36,17 @@
                 </div>
             </div>
         {% endif %}
+        {% if request.user.is_authenticated %}
+            <p>
+                your are logged in with {{ request.user.username }}.
+                
+                <form action="{% url "authors:logout" %}" method="POST">
+                    {% csrf_token %} 
+                    <input type="hidden" name="username" value="{{ request.user.username }}">
+                    <button class="plaintext-button" type="submit">click here</button>
+                </form> to logout
+            </p>
+        {% endif %}
         </form>
     </div>
 {% endblock content %}
